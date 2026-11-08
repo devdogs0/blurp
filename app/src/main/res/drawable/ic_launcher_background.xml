@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Play icon's background: a soft purple glow from the centre out to the corners. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="47%"
+        android:startColor="#FF291D41"
+        android:endColor="#FF1E1531" />
+</shape>

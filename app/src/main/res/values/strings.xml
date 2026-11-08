@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blurp</string>
+    <string name="fold_blur_service_description">Blurp frosts the folding half of your screen while you open and close your phone, everywhere including the lock screen. It only draws a blur on top of the screen. It doesn\'t read, collect or share anything on your screen.</string>
+
+    <string name="disclosure_title">Blurp</string>
+    <string name="disclosure_body">To frost your screen while you fold, Blurp draws a blur layer over everything using Android\'s Accessibility service. It doesn\'t read, collect or share anything on your screen.</string>
+    <string name="disclosure_check">I understand and allow Blurp to use the Accessibility service</string>
+    <string name="disclosure_continue">Continue</string>
+
+    <string name="enable_title">Turn on Blurp</string>
+    <string name="enable_body">In the next screen, switch Blurp on. Then come back.</string>
+    <string name="enable_button">Open Settings</string>
+
+    <string name="tutorial_title">Close your phone, then open it</string>
+    <string name="tutorial_body">That\'s it. Works everywhere, even on the lock screen.</string>
+    <string name="tutorial_done">Done</string>
+
+    <string name="home_switch">Fold frost</string>
+    <string name="home_on">On. Close and open your phone to see it.</string>
+    <string name="home_off">Off.</string>
+    <string name="home_service_off">Blurp is turned off in Settings</string>
+    <string name="home_turn_on">Turn on in Settings</string>
+
+    <string name="unsupported_title">This phone isn\'t supported</string>
+    <string name="unsupported_body">Blurp needs a Samsung Galaxy Z Fold7, Z Fold8 or Z Fold8 Ultra.</string>
+</resources>
