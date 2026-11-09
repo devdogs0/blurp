@@ -37,8 +37,9 @@ class MainActivity : ComponentActivity() {
                 refresh()
             },
             onAllSetDone = {
+                // Setup is over: go back to wherever the user was. The toggle is for later visits.
                 prefs.allSetSeen = true
-                refresh()
+                finishAndRemoveTask()
             },
             onFrostChange = { prefs.setFrostEnabled(it) },
         )

@@ -17,7 +17,7 @@
     <string name="tutorial_done">Skip</string>
 
     <string name="allset_title">You\'re all set</string>
-    <string name="allset_body">Blurp frosts the half that moves every time you fold, even on the lock screen. You can close the app; it keeps working.</string>
+    <string name="allset_body">Blurp frosts the half that moves every time you fold, even on the lock screen. It keeps working with the app closed.</string>
     <string name="allset_done">Done</string>
 
     <string name="home_switch">Fold frost</string>
