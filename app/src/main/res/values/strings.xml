@@ -11,6 +11,8 @@
     <string name="enable_title">Turn on Blurp</string>
     <string name="enable_body">In the next screen, switch Blurp on. Then come back.</string>
     <string name="enable_button">Open Settings</string>
+    <string name="enable_restricted_body">Installed Blurp from a download? Then Android first says “App was denied access”. Open App info, tap ⋮ at the top right and choose “Allow restricted settings”. Then come back and open Settings to switch Blurp on.</string>
+    <string name="enable_app_info">Open App info</string>
 
     <string name="tutorial_title">Close your phone, then open it</string>
     <string name="tutorial_body">That\'s it. Works everywhere, even on the lock screen.</string>
@@ -20,6 +22,8 @@
     <string name="allset_body">Blurp frosts the half that moves every time you fold, even on the lock screen. It keeps working with the app closed.</string>
     <string name="allset_done">Done</string>
 
+    <string name="home_intro">Frosts the half of your Fold\'s screen that moves while you fold it, on the lock screen and in every app.</string>
+    <string name="hero_description">A Galaxy Z Fold\'s lock screen while it folds: the moving half frosted, the other half sharp.</string>
     <string name="home_switch">Fold frost</string>
     <string name="home_on">On. Close and open your phone to see it.</string>
     <string name="home_off">Off.</string>

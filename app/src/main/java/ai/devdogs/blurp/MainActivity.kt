@@ -17,6 +17,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var prefs: BlurpPrefs
     private var screen by mutableStateOf(Screen.Disclosure)
     private var serviceEnabled by mutableStateOf(false)
+    private var restrictedHelp by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
                 refresh()
             },
             onOpenSettings = { openAccessibilitySettings(this) },
+            onOpenAppInfo = { openAppInfo(this) },
             onTutorialDone = {
                 prefs.tutorialDone = true
                 refresh()
@@ -45,7 +47,7 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             val frostEnabled by prefs.frostEnabled.collectAsState()
-            BlurpApp(screen, serviceEnabled, frostEnabled, actions)
+            BlurpApp(screen, serviceEnabled, frostEnabled, restrictedHelp, actions)
         }
     }
 
@@ -56,6 +58,8 @@ class MainActivity : ComponentActivity() {
 
     private fun refresh() {
         serviceEnabled = isBlurpServiceEnabled(this)
+        // Read again on every resume: coming back from App info may have allowed restricted settings.
+        restrictedHelp = restrictedSettingsHelpNeeded(this)
         screen = OnboardingFlow.screenFor(
             supported = SamsungBlur.available,
             consented = prefs.consented,

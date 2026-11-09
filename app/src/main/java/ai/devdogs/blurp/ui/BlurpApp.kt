@@ -4,12 +4,14 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
@@ -43,13 +46,14 @@ internal val Accent = Color(0xFF7C5CFF)
 class BlurpActions(
     val onConsent: () -> Unit,
     val onOpenSettings: () -> Unit,
+    val onOpenAppInfo: () -> Unit,
     val onTutorialDone: () -> Unit,
     val onAllSetDone: () -> Unit,
     val onFrostChange: (Boolean) -> Unit,
 )
 
 @Composable
-fun BlurpApp(screen: Screen, serviceEnabled: Boolean, frostEnabled: Boolean, actions: BlurpActions) {
+fun BlurpApp(screen: Screen, serviceEnabled: Boolean, frostEnabled: Boolean, restrictedHelp: Boolean, actions: BlurpActions) {
     MaterialTheme(colorScheme = darkColorScheme(primary = Accent, background = Ink, surface = Ink)) {
         BoxWithConstraints(
             Modifier
@@ -69,16 +73,59 @@ fun BlurpApp(screen: Screen, serviceEnabled: Boolean, frostEnabled: Boolean, act
                 transitionSpec = { fadeIn() togetherWith fadeOut() },
                 label = "screen",
             ) { target ->
-                ScreenColumn(wide) {
-                    when (target) {
-                        Screen.Unsupported -> UnsupportedScreen()
-                        Screen.Disclosure -> DisclosureScreen(actions.onConsent)
-                        Screen.EnableService -> EnableServiceScreen(actions.onOpenSettings)
-                        Screen.Tutorial -> TutorialScreen(actions.onTutorialDone)
-                        Screen.AllSet -> AllSetScreen(actions.onAllSetDone)
-                        Screen.Home -> HomeScreen(serviceEnabled, frostEnabled, actions.onFrostChange, actions.onOpenSettings)
+                when (target) {
+                    // The first screen and the everyday one welcome with the frosted Fold.
+                    Screen.Disclosure -> HeroScreen(wide) { DisclosureScreen(actions.onConsent) }
+                    Screen.Home -> HeroScreen(wide) {
+                        HomeScreen(serviceEnabled, frostEnabled, actions.onFrostChange, actions.onOpenSettings)
+                    }
+                    else -> ScreenColumn(wide) {
+                        when (target) {
+                            Screen.Unsupported -> UnsupportedScreen()
+                            Screen.EnableService -> EnableServiceScreen(actions.onOpenSettings, restrictedHelp, actions.onOpenAppInfo)
+                            Screen.Tutorial -> TutorialScreen(actions.onTutorialDone)
+                            Screen.AllSet -> AllSetScreen(actions.onAllSetDone)
+                            Screen.Disclosure, Screen.Home -> Unit
+                        }
                     }
                 }
+            }
+        }
+    }
+}
+
+/**
+ * The frosted Fold beside the words on the inner screen, above them on the cover, the way
+ * devdogs.ai shows Blurp. At most 960 dp wide, so the words stay near the picture.
+ */
+@Composable
+private fun HeroScreen(wide: Boolean, content: @Composable ColumnScope.() -> Unit) {
+    Box(Modifier.fillMaxSize().safeDrawingPadding(), contentAlignment = Alignment.Center) {
+        if (wide) {
+            Row(
+                modifier = Modifier
+                    .widthIn(max = 960.dp)
+                    .padding(horizontal = 40.dp, vertical = 32.dp),
+                horizontalArrangement = Arrangement.spacedBy(48.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                FoldHero(Modifier.weight(1.15f))
+                Column(
+                    modifier = Modifier.weight(1f).verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    content = content,
+                )
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 24.dp, vertical = 32.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                FoldHero(Modifier.fillMaxWidth().padding(bottom = 12.dp))
+                content()
             }
         }
     }
@@ -121,6 +168,19 @@ internal fun PillButton(text: String, enabled: Boolean = true, onClick: () -> Un
             disabledContainerColor = Paper.copy(alpha = 0.2f),
             disabledContentColor = Paper.copy(alpha = 0.5f),
         ),
+    ) {
+        Text(text, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
+    }
+}
+
+/** The second choice next to a [PillButton]: outlined, so the first stays the obvious one. */
+@Composable
+internal fun GhostButton(text: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick = onClick,
+        shape = RoundedCornerShape(percent = 50),
+        border = BorderStroke(1.dp, Paper.copy(alpha = 0.35f)),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = Paper),
     ) {
         Text(text, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp))
     }

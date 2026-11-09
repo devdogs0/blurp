@@ -23,6 +23,7 @@ fun HomeScreen(
     onOpenSettings: () -> Unit,
 ) {
     Title(stringResource(R.string.app_name))
+    Body(stringResource(R.string.home_intro))
     if (!serviceEnabled) {
         Body(stringResource(R.string.home_service_off))
         PillButton(stringResource(R.string.home_turn_on), onClick = onOpenSettings)
