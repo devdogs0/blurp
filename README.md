@@ -1,8 +1,22 @@
 # Blurp
 
+![Blurp: Fold Frost](docs/images/feature-graphic.jpg)
+
 Blurp frosts the half of a Samsung Galaxy Z Fold's screen that is swinging while you fold or unfold the phone: on the home screen, in other apps and on the lock screen. When the phone opens, the inner screen lights up frosted and clears as it settles; when it closes, the cover screen does the same.
 
 Free, with no ads, no internet permission and nothing collected.
+
+## Screenshots
+
+Captured on a Galaxy Z Fold8: the lock screen while the phone folds, the cover screen while it opens, and Blurp's one switch.
+
+<p>
+  <img src="docs/images/lock-frost.jpg" width="66%" alt="The inner lock screen with its swinging half frosted">
+  <img src="docs/images/cover-frost.jpg" width="31%" alt="The cover screen frosted from its outer edge while the phone opens">
+</p>
+<p>
+  <img src="docs/images/blurp-app.jpg" width="66%" alt="Blurp's home screen: one Fold frost switch, turned on">
+</p>
 
 ## Phones
 
@@ -57,6 +71,6 @@ Blurp collects nothing. See [docs/release/privacy-policy.html](docs/release/priv
 
 ## Licence
 
-Blurp is free software under the GNU General Public License v3.0; see [LICENSE](LICENSE). The licence covers the code, not the Blurp name or icon: forks you publish need their own name and icon.
+Blurp is free software under the GNU General Public License v3.0; see [LICENSE](LICENSE). The licence covers the code, not the Blurp name, icon, screenshots or artwork: forks you publish need their own name and icon.
 
 Copyright © 2026 DEVDOGS
