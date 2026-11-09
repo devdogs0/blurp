@@ -11,7 +11,7 @@ Blurp frosts the half of the screen that’s moving when you fold or unfold your
 
 Made for Samsung Galaxy Z Fold7, Z Fold8 and Z Fold8 Ultra.
 
-After a short one-time setup (Android asks you to turn on Blurp under Accessibility), just close your phone, then open it.
+After a short one-time setup (Blurp opens Accessibility, where you turn it on under Installed apps), just close your phone, then open it.
 
 You can switch the frost off in the app at any time. Blurp does not read what is on your screen.
 

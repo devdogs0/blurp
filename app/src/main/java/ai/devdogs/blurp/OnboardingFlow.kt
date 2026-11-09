@@ -23,4 +23,14 @@ object OnboardingFlow {
         !allSetSeen -> Screen.AllSet
         else -> Screen.Home
     }
+
+    /**
+     * Google Play: an app using the Accessibility service for something other than accessibility
+     * must get consent through its own disclosure first. The service can also be switched on
+     * straight from Settings, so it draws nothing until the disclosure is accepted.
+     */
+    fun frostShown(consented: Boolean, frostEnabled: Boolean): Boolean = consented && frostEnabled
+
+    /** A fold ends setup only once the frost could be seen, so after consent. */
+    fun foldEndsSetup(consented: Boolean, tutorialDone: Boolean): Boolean = consented && !tutorialDone
 }

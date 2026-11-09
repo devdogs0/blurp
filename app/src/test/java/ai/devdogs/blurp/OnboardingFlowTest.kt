@@ -48,4 +48,20 @@ class OnboardingFlowTest {
         assertEquals(Screen.EnableService, screen(serviceEnabled = false))
         assertEquals(Screen.EnableService, screen(serviceEnabled = false, allSetSeen = false))
     }
+
+    // Play: a non-accessibility use of the Accessibility service waits for the in-app disclosure,
+    // even when someone switches Blurp on straight from Settings without opening it.
+    @Test
+    fun noFrostBeforeTheDisclosureIsAccepted() {
+        assertEquals(false, OnboardingFlow.frostShown(consented = false, frostEnabled = true))
+        assertEquals(true, OnboardingFlow.frostShown(consented = true, frostEnabled = true))
+        assertEquals(false, OnboardingFlow.frostShown(consented = true, frostEnabled = false))
+    }
+
+    @Test
+    fun aFoldBeforeConsentDoesNotEndSetup() {
+        assertEquals(false, OnboardingFlow.foldEndsSetup(consented = false, tutorialDone = false))
+        assertEquals(true, OnboardingFlow.foldEndsSetup(consented = true, tutorialDone = false))
+        assertEquals(false, OnboardingFlow.foldEndsSetup(consented = true, tutorialDone = true))
+    }
 }

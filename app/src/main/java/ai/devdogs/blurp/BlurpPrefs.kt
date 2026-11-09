@@ -23,6 +23,11 @@ class BlurpPrefs private constructor(context: Context) {
         get() = prefs.getBoolean(ALL_SET_SEEN, false)
         set(value) = prefs.edit().putBoolean(ALL_SET_SEEN, value).apply()
 
+    /** Where Blurp last sent the user to switch it on: [restrictedSettingsStep] follows it. */
+    var lastSetupTrip: SetupTrip
+        get() = SetupTrip.fromStored(prefs.getString(LAST_SETUP_TRIP, null))
+        set(value) = prefs.edit().putString(LAST_SETUP_TRIP, value.name).apply()
+
     val frostEnabled: StateFlow<Boolean> = frost.asStateFlow()
     private val frostListeners = ArrayList<(Boolean) -> Unit>()
 
@@ -46,6 +51,7 @@ class BlurpPrefs private constructor(context: Context) {
         private const val CONSENTED = "consented"
         private const val TUTORIAL_DONE = "tutorial_done"
         private const val ALL_SET_SEEN = "all_set_seen"
+        private const val LAST_SETUP_TRIP = "last_setup_trip"
         private const val FROST_ENABLED = "frost_enabled"
 
         @Volatile

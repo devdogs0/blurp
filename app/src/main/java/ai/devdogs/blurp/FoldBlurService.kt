@@ -35,7 +35,9 @@ class FoldBlurService : AccessibilityService() {
      * A fold ends setup even when Blurp's own screen is gone: closing Settings
      * from Recents closes Blurp with it, and the tutorial could never finish.
      */
-    private val onFold: () -> Unit = { if (!prefs.tutorialDone) prefs.tutorialDone = true }
+    private val onFold: () -> Unit = {
+        if (OnboardingFlow.foldEndsSetup(prefs.consented, prefs.tutorialDone)) prefs.tutorialDone = true
+    }
 
     private val displayListener = object : DisplayManager.DisplayListener {
         override fun onDisplayChanged(displayId: Int) {
@@ -146,7 +148,7 @@ class FoldBlurService : AccessibilityService() {
 
     private fun draw(nowNs: Long) {
         val geo = geometry ?: return
-        val level = if (prefs.frostEnabled.value) {
+        val level = if (OnboardingFlow.frostShown(prefs.consented, prefs.frostEnabled.value)) {
             DuoFrostModel.level(geo.cover, controller.reach, controller.coverFrost, controller.innerFade)
         } else {
             DuoFrostModel.Level(0f, 0f, 0f)

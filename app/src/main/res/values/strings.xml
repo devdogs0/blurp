@@ -4,16 +4,21 @@
     <string name="fold_blur_service_description">Blurp frosts the folding half of your screen while you open and close your phone, everywhere including the lock screen. It only draws a blur on top of the screen. It doesn\'t read, collect or share anything on your screen.</string>
 
     <string name="disclosure_title">Blurp</string>
-    <string name="disclosure_body">To frost your screen while you fold, Blurp draws a blur layer over everything using Android\'s Accessibility service. It doesn\'t read, collect or share anything on your screen.</string>
+    <string name="disclosure_body">Blurp frosts the half of your screen that moves while you fold, in every app and on the lock screen. Only Android\'s Accessibility service lets an app lay a layer over the lock screen and every other app, so Blurp needs it.\n\nBlurp uses it only to draw that frost. It doesn\'t read what\'s on your screen or what you type, and it doesn\'t collect or share any data. It has no internet access.</string>
     <string name="disclosure_check">I understand and allow Blurp to use the Accessibility service</string>
     <string name="disclosure_continue">Continue</string>
 
     <string name="enable_title">Turn on Blurp</string>
-    <string name="enable_body">In the next screen, switch Blurp on. Then come back.</string>
+    <string name="enable_body">Tap Open Settings, then Installed apps and Blurp, and switch Blurp on. Then come back.</string>
     <string name="enable_button">Open Settings</string>
-    <string name="enable_try_first">In the next screen, switch Blurp on. Blurp came from a download, so Android answers “App was denied access” the first time: tap Close and come back here.</string>
-    <string name="enable_allow_now">Android held Blurp back. Open App info, tap ⋮ at the top right and choose “Allow restricted settings”. Then open Settings again and switch Blurp on.</string>
     <string name="enable_app_info">Open App info</string>
+    <string name="enable_download_intro">Android guards apps installed from a download, so switching Blurp on takes three steps:</string>
+    <string name="enable_step_try">Tap Open Settings, then Installed apps and Blurp. Android answers “App was denied access”. Tap Close and come back here.</string>
+    <string name="enable_step_allow">Tap Open App info, then ⋮ at the top right, and choose “Allow restricted settings”. Confirm if Android asks, then come back here.</string>
+    <string name="enable_step_switch_on">Tap Open Settings again, then Installed apps and Blurp. Switch Blurp on and tap Allow.</string>
+    <string name="enable_step_next">Next step</string>
+    <string name="guide_installed_apps">Settings, Accessibility: Installed apps, the row under Accessibility shortcuts.</string>
+    <string name="guide_allow_restricted">Blurp\'s App info with the ⋮ menu open: Allow restricted settings, at the top right.</string>
 
     <string name="tutorial_title">Close your phone, then open it</string>
     <string name="tutorial_body">That\'s it. Works everywhere, even on the lock screen.</string>

@@ -32,8 +32,16 @@ class MainActivity : ComponentActivity() {
                 prefs.consented = true
                 refresh()
             },
-            onOpenSettings = { openAccessibilitySettings(this) },
-            onOpenAppInfo = { openAppInfo(this) },
+            // Blurp can't see what Android answers in Settings or App info, so it remembers where it
+            // sent the user and shows the step after that one (see restrictedSettingsStep).
+            onOpenSettings = {
+                prefs.lastSetupTrip = SetupTrip.Settings
+                openAccessibilitySettings(this)
+            },
+            onOpenAppInfo = {
+                prefs.lastSetupTrip = SetupTrip.AppInfo
+                openAppInfo(this)
+            },
             onTutorialDone = {
                 prefs.tutorialDone = true
                 refresh()
@@ -58,8 +66,8 @@ class MainActivity : ComponentActivity() {
 
     private fun refresh() {
         serviceEnabled = isBlurpServiceEnabled(this)
-        // Read again on every resume: coming back from Settings after a refusal moves to the next step.
-        restrictedStep = restrictedSettingsStep(this)
+        // Read again on every resume: coming back from Settings with the switch off moves to the next step.
+        restrictedStep = restrictedSettingsStep(this, prefs.lastSetupTrip, setupDone = prefs.tutorialDone)
         screen = OnboardingFlow.screenFor(
             supported = SamsungBlur.available,
             consented = prefs.consented,

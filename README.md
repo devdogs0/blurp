@@ -15,7 +15,7 @@ Captured on a Galaxy Z Fold8: the lock screen while the phone folds, the cover s
   <img src="docs/images/cover-frost.jpg" width="31%" alt="The cover screen frosted from its outer edge while the phone opens">
 </p>
 <p>
-  <img src="docs/images/blurp-app.jpg" width="66%" alt="Blurp's home screen: one Fold frost switch, turned on">
+  <img src="docs/images/blurp-app.jpg" width="66%" alt="Blurp's home screen: the frosted Fold beside its one switch, Fold frost, turned on">
 </p>
 
 ## Phones
