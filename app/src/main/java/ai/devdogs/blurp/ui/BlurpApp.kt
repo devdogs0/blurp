@@ -44,6 +44,7 @@ class BlurpActions(
     val onConsent: () -> Unit,
     val onOpenSettings: () -> Unit,
     val onTutorialDone: () -> Unit,
+    val onAllSetDone: () -> Unit,
     val onFrostChange: (Boolean) -> Unit,
 )
 
@@ -74,6 +75,7 @@ fun BlurpApp(screen: Screen, serviceEnabled: Boolean, frostEnabled: Boolean, act
                         Screen.Disclosure -> DisclosureScreen(actions.onConsent)
                         Screen.EnableService -> EnableServiceScreen(actions.onOpenSettings)
                         Screen.Tutorial -> TutorialScreen(actions.onTutorialDone)
+                        Screen.AllSet -> AllSetScreen(actions.onAllSetDone)
                         Screen.Home -> HomeScreen(serviceEnabled, frostEnabled, actions.onFrostChange, actions.onOpenSettings)
                     }
                 }

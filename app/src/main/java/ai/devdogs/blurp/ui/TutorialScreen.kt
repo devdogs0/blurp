@@ -34,7 +34,8 @@ import ai.devdogs.blurp.R
 /**
  * Finishes by itself once the phone has been folded and opened again. The
  * service records that fold too, so setup also finishes when this screen was
- * closed before the fold; the app then opens on Home.
+ * closed before the fold. Either way "You're all set" comes next; the button
+ * here skips the fold.
  */
 @Composable
 fun TutorialScreen(onDone: () -> Unit) {

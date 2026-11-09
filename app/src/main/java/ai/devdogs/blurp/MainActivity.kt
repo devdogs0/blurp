@@ -36,6 +36,10 @@ class MainActivity : ComponentActivity() {
                 prefs.tutorialDone = true
                 refresh()
             },
+            onAllSetDone = {
+                prefs.allSetSeen = true
+                refresh()
+            },
             onFrostChange = { prefs.setFrostEnabled(it) },
         )
         setContent {
@@ -56,6 +60,7 @@ class MainActivity : ComponentActivity() {
             consented = prefs.consented,
             serviceEnabled = serviceEnabled,
             tutorialDone = prefs.tutorialDone,
+            allSetSeen = prefs.allSetSeen,
         )
     }
 }

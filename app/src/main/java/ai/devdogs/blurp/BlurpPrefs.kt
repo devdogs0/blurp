@@ -19,6 +19,10 @@ class BlurpPrefs private constructor(context: Context) {
         get() = prefs.getBoolean(TUTORIAL_DONE, false)
         set(value) = prefs.edit().putBoolean(TUTORIAL_DONE, value).apply()
 
+    var allSetSeen: Boolean
+        get() = prefs.getBoolean(ALL_SET_SEEN, false)
+        set(value) = prefs.edit().putBoolean(ALL_SET_SEEN, value).apply()
+
     val frostEnabled: StateFlow<Boolean> = frost.asStateFlow()
     private val frostListeners = ArrayList<(Boolean) -> Unit>()
 
@@ -41,6 +45,7 @@ class BlurpPrefs private constructor(context: Context) {
     companion object {
         private const val CONSENTED = "consented"
         private const val TUTORIAL_DONE = "tutorial_done"
+        private const val ALL_SET_SEEN = "all_set_seen"
         private const val FROST_ENABLED = "frost_enabled"
 
         @Volatile
