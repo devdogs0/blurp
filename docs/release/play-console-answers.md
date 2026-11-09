@@ -1,6 +1,6 @@
 # Play Console answers
 
-Package: `com.lunova.blurp`
+Package: `ai.devdogs.blurp`
 Name: Blurp
 Store title: Blurp: Fold Frost
 Account: organization developer account (no 12-tester closed-test wait)

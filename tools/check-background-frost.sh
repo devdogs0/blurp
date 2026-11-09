@@ -15,7 +15,7 @@ set -eu
 SERIAL="${1:-$(adb devices | awk 'NR>1 && $2=="device"{print $1; exit}')}"
 [ -n "$SERIAL" ] || { echo "FAIL: no device"; exit 1; }
 A=(adb -s "$SERIAL")
-PKG=com.lunova.blurp
+PKG=ai.devdogs.blurp
 ACTION=$PKG.PREVIEW
 
 case "$("${A[@]}" shell settings get secure enabled_accessibility_services)" in

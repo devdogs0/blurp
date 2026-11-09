@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import kotlin.math.max
 import kotlin.math.pow

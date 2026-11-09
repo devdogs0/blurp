@@ -1,4 +1,4 @@
-package com.lunova.blurp.ui
+package ai.devdogs.blurp.ui
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.fadeIn
@@ -32,7 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lunova.blurp.Screen
+import ai.devdogs.blurp.Screen
 
 internal val Ink = Color(0xFF0B0A10)
 internal val Glow = Color(0xFF3A2A55)

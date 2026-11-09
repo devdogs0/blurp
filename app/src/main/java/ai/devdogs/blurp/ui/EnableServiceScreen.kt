@@ -1,8 +1,8 @@
-package com.lunova.blurp.ui
+package ai.devdogs.blurp.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.lunova.blurp.R
+import ai.devdogs.blurp.R
 
 @Composable
 fun EnableServiceScreen(onOpenSettings: () -> Unit) {

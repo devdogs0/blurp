@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import android.graphics.Color
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.lunova.blurp.ui.BlurpActions
-import com.lunova.blurp.ui.BlurpApp
+import ai.devdogs.blurp.ui.BlurpActions
+import ai.devdogs.blurp.ui.BlurpApp
 
 class MainActivity : ComponentActivity() {
     private lateinit var prefs: BlurpPrefs

@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import android.accessibilityservice.AccessibilityService
 import android.content.BroadcastReceiver
@@ -41,7 +41,7 @@ class FoldBlurService : AccessibilityService() {
         override fun onDisplayRemoved(displayId: Int) = Unit
     }
 
-    /** Debug builds: adb shell am broadcast -a com.lunova.blurp.PREVIEW --ef angle 90 (no extra: live; --ez frost false; --ez state true). */
+    /** Debug builds: adb shell am broadcast -a ai.devdogs.blurp.PREVIEW --ef angle 90 (no extra: live; --ez frost false; --ez state true). */
     private val preview = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.hasExtra("state")) {
@@ -180,6 +180,6 @@ class FoldBlurService : AccessibilityService() {
 
     companion object {
         private const val TAG = "FoldBlur"
-        private const val ACTION_PREVIEW = "com.lunova.blurp.PREVIEW"
+        private const val ACTION_PREVIEW = "ai.devdogs.blurp.PREVIEW"
     }
 }

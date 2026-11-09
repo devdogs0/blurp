@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -7,8 +7,8 @@ class ServiceStatusTest {
     @Test
     fun detailsExtraIsFlattenedComponentName() {
         assertEquals(
-            "com.lunova.blurp/com.lunova.blurp.FoldBlurService",
-            accessibilityDetailsExtra("com.lunova.blurp", "com.lunova.blurp.FoldBlurService"),
+            "ai.devdogs.blurp/ai.devdogs.blurp.FoldBlurService",
+            accessibilityDetailsExtra("ai.devdogs.blurp", "ai.devdogs.blurp.FoldBlurService"),
         )
     }
 }

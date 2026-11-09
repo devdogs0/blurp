@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 enum class Screen { Unsupported, Disclosure, EnableService, Tutorial, Home }
 

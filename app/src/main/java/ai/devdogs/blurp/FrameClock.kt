@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import android.os.Handler
 import android.os.HandlerThread

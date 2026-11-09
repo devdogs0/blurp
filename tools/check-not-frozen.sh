@@ -15,7 +15,7 @@ SERIAL="${1:-$(adb devices | awk 'NR>1 && $2=="device"{print $1; exit}')}"
 [ -n "$SERIAL" ] || { echo "FAIL: no device"; exit 1; }
 WAIT="${2:-420}"
 A=(adb -s "$SERIAL")
-PKG=com.lunova.blurp
+PKG=ai.devdogs.blurp
 
 PID=$("${A[@]}" shell pidof "$PKG" | tr -d '\r')
 [ -n "$PID" ] || { echo "FAIL: Blurp isn't running (is its accessibility service on?)"; exit 1; }

@@ -1,4 +1,4 @@
-package com.lunova.blurp.ui
+package ai.devdogs.blurp.ui
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
@@ -28,8 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lunova.blurp.HingeController
-import com.lunova.blurp.R
+import ai.devdogs.blurp.HingeController
+import ai.devdogs.blurp.R
 
 /** Finishes by itself once the phone has been folded and opened again. */
 @Composable

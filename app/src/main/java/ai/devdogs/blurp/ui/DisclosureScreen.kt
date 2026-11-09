@@ -1,4 +1,4 @@
-package com.lunova.blurp.ui
+package ai.devdogs.blurp.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.lunova.blurp.R
+import ai.devdogs.blurp.R
 
 /** Google Play's prominent disclosure for the Accessibility service. Nothing else belongs on this screen. */
 @Composable

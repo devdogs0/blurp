@@ -1,4 +1,4 @@
-package com.lunova.blurp
+package ai.devdogs.blurp
 
 import android.view.Surface
 import org.junit.Assert.assertEquals

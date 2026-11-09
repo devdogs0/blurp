@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lunova.blurp"
+    namespace = "ai.devdogs.blurp"
     // Android 17 and up only (owner's call, 2026-11-08): the Fold7 got One UI 9 in its
     // September 2026 update, and One UI 8 was never tested.
     // yagni: AGP 8.13 was tested only up to API 36.1 and D8 warns it doesn't know API 37;
@@ -15,7 +15,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.lunova.blurp"
+        applicationId = "ai.devdogs.blurp"
         minSdk = 37
         targetSdk = 37
         versionCode = 1

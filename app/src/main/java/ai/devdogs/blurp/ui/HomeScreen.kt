@@ -1,4 +1,4 @@
-package com.lunova.blurp.ui
+package ai.devdogs.blurp.ui
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Arrangement
-import com.lunova.blurp.R
+import ai.devdogs.blurp.R
 
 @Composable
 fun HomeScreen(

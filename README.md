@@ -41,7 +41,7 @@ For a release build, copy `keystore.properties.example` to `keystore.properties`
 
 - Unit tests: `./gradlew :app:testDebugUnitTest`
 - Device checks, with a Fold on adb and Blurp's service on: `tools/check-fold-fade.sh`, `tools/check-background-frost.sh`, `tools/check-not-frozen.sh`
-- Debug builds hold the inner frost at a hinge angle with `adb shell am broadcast -a com.lunova.blurp.PREVIEW --ef angle 90`. Send it without the angle to go back to the hinge.
+- Debug builds hold the inner frost at a hinge angle with `adb shell am broadcast -a ai.devdogs.blurp.PREVIEW --ef angle 90`. Send it without the angle to go back to the hinge.
 
 ## Contributing
 
@@ -59,4 +59,4 @@ Blurp collects nothing. See [docs/release/privacy-policy.html](docs/release/priv
 
 Blurp is free software under the GNU General Public License v3.0; see [LICENSE](LICENSE). The licence covers the code, not the Blurp name or icon: forks you publish need their own name and icon.
 
-Copyright © 2026 Lunova
+Copyright © 2026 DEVDOGS
