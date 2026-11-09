@@ -4,6 +4,9 @@ Package: `com.lunova.blurp`
 Name: Blurp
 Store title: Blurp: Fold Frost
 Account: organization developer account (no 12-tester closed-test wait)
+Privacy policy URL: https://devdogs0.github.io/blurp/release/privacy-policy.html (GitHub Pages, from `docs/` on `main`)
+Contact email: support@devdogs.ai
+Website: https://github.com/devdogs0/blurp
 
 ## Accessibility declaration
 
