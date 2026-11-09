@@ -58,7 +58,20 @@ class HingeController private constructor(context: Context) {
     /** Each time the phone comes back to flat open after folding to 90 degrees or less. */
     var foldsCompleted by mutableIntStateOf(0)
         private set
-    private var foldedSinceCount = false
+    private val foldListeners = ArrayList<() -> Unit>()
+    private val foldCounter = FoldCounter {
+        foldsCompleted++
+        foldListeners.forEach { it() }
+    }
+
+    /** Main thread only, like the hinge events that call it. */
+    fun addFoldListener(listener: () -> Unit) {
+        foldListeners += listener
+    }
+
+    fun removeFoldListener(listener: () -> Unit) {
+        foldListeners -= listener
+    }
 
     /** 1 the moment the phone opens onto the inner screen, easing to 0 as the Duo clears. */
     var innerFade = 0f
@@ -243,11 +256,7 @@ class HingeController private constructor(context: Context) {
         val previous = lastSampleAngle
         lastSampleNs = timestamp
         lastSampleAngle = next
-        if (next <= 90f) foldedSinceCount = true
-        if (next >= 172f && foldedSinceCount) {
-            foldedSinceCount = false
-            foldsCompleted++
-        }
+        foldCounter.onAngle(next)
         if (delta >= 0.3f) {
             angle = next
             wake()

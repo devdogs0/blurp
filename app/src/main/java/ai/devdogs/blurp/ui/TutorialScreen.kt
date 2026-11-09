@@ -31,7 +31,11 @@ import androidx.compose.ui.unit.sp
 import ai.devdogs.blurp.HingeController
 import ai.devdogs.blurp.R
 
-/** Finishes by itself once the phone has been folded and opened again. */
+/**
+ * Finishes by itself once the phone has been folded and opened again. The
+ * service records that fold too, so setup also finishes when this screen was
+ * closed before the fold; the app then opens on Home.
+ */
 @Composable
 fun TutorialScreen(onDone: () -> Unit) {
     val controller = HingeController.get(LocalContext.current)

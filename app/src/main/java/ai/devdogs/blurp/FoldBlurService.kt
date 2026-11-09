@@ -31,6 +31,12 @@ class FoldBlurService : AccessibilityService() {
     private lateinit var prefs: BlurpPrefs
     private val onFrost: (Boolean) -> Unit = { loop() }
 
+    /**
+     * A fold ends setup even when Blurp's own screen is gone: closing Settings
+     * from Recents closes Blurp with it, and the tutorial could never finish.
+     */
+    private val onFold: () -> Unit = { if (!prefs.tutorialDone) prefs.tutorialDone = true }
+
     private val displayListener = object : DisplayManager.DisplayListener {
         override fun onDisplayChanged(displayId: Int) {
             if (displayId == Display.DEFAULT_DISPLAY) refreshGeometry()
@@ -111,6 +117,7 @@ class FoldBlurService : AccessibilityService() {
         }
         running = true
         controller.addWakeListener(onWake)
+        controller.addFoldListener(onFold)
         prefs.addFrostListener(onFrost)
         loop()
         Log.i(TAG, "system-wide frost on, ${geometry}")
@@ -125,6 +132,7 @@ class FoldBlurService : AccessibilityService() {
             running = false
             looping = false
             controller.removeWakeListener(onWake)
+            controller.removeFoldListener(onFold)
             prefs.removeFrostListener(onFrost)
             FrameClock.removeFrameCallback(frame)
             getSystemService(DisplayManager::class.java).unregisterDisplayListener(displayListener)
