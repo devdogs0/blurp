@@ -11,7 +11,8 @@
     <string name="enable_title">Turn on Blurp</string>
     <string name="enable_body">In the next screen, switch Blurp on. Then come back.</string>
     <string name="enable_button">Open Settings</string>
-    <string name="enable_restricted_body">Installed Blurp from a download? Then Android first says “App was denied access”. Open App info, tap ⋮ at the top right and choose “Allow restricted settings”. Then come back and open Settings to switch Blurp on.</string>
+    <string name="enable_try_first">In the next screen, switch Blurp on. Blurp came from a download, so Android answers “App was denied access” the first time: tap Close and come back here.</string>
+    <string name="enable_allow_now">Android held Blurp back. Open App info, tap ⋮ at the top right and choose “Allow restricted settings”. Then open Settings again and switch Blurp on.</string>
     <string name="enable_app_info">Open App info</string>
 
     <string name="tutorial_title">Close your phone, then open it</string>

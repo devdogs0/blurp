@@ -9,28 +9,43 @@ import android.net.Uri
 import android.os.Process
 import android.provider.Settings
 
+/** Where someone who installed Blurp from a file stands with Android's restricted settings. */
+enum class RestrictedSettingsStep {
+    /** Installed from Play or over USB: nothing is held back. */
+    None,
+
+    /** Try the switch: Android refuses it once, and only then offers the way past. */
+    TryFirst,
+
+    /** Refused once: "Allow restricted settings" is now in App info's ⋮ menu. */
+    AllowNow,
+}
+
 /**
- * Android holds back accessibility for an app installed from a downloaded or picked file until
- * the user allows restricted settings in its App info (One UI 9: "App was denied access"). Play
- * and USB installs are not held back.
+ * Android holds back accessibility for an app installed from a downloaded or picked file (on
+ * Android 15 and up through Enhanced Confirmation; One UI 9 says "App was denied access"). The
+ * app op reads allowed until the first refusal and ignored after it, so it tells the two steps
+ * apart; it cannot say whether the switch is still held back before that refusal.
  */
-fun needsRestrictedSettingsHelp(packageSource: Int, restrictedSettingsMode: Int?): Boolean {
+fun restrictedSettingsStep(packageSource: Int, restrictedSettingsMode: Int?): RestrictedSettingsStep {
     val fromAFile = packageSource == PackageInstaller.PACKAGE_SOURCE_DOWNLOADED_FILE ||
         packageSource == PackageInstaller.PACKAGE_SOURCE_LOCAL_FILE
-    return fromAFile && restrictedSettingsMode != AppOpsManager.MODE_ALLOWED
+    if (!fromAFile) return RestrictedSettingsStep.None
+    val refused = restrictedSettingsMode == AppOpsManager.MODE_IGNORED || restrictedSettingsMode == AppOpsManager.MODE_ERRORED
+    return if (refused) RestrictedSettingsStep.AllowNow else RestrictedSettingsStep.TryFirst
 }
 
 /** The app op behind "Allow restricted settings" (AppOpsManager.OPSTR_ACCESS_RESTRICTED_SETTINGS, hidden). */
 private const val RESTRICTED_SETTINGS_OP = "android:access_restricted_settings"
 
-fun restrictedSettingsHelpNeeded(context: Context): Boolean {
+fun restrictedSettingsStep(context: Context): RestrictedSettingsStep {
     val source = runCatching { context.packageManager.getInstallSourceInfo(context.packageName).packageSource }
         .getOrDefault(PackageInstaller.PACKAGE_SOURCE_UNSPECIFIED)
     val mode = runCatching {
         context.getSystemService(AppOpsManager::class.java)
             .unsafeCheckOpNoThrow(RESTRICTED_SETTINGS_OP, Process.myUid(), context.packageName)
     }.getOrNull()
-    return needsRestrictedSettingsHelp(source, mode)
+    return restrictedSettingsStep(source, mode)
 }
 
 /** Blurp's App info, whose ⋮ menu holds "Allow restricted settings". */

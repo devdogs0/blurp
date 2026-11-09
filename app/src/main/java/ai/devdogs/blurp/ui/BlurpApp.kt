@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ai.devdogs.blurp.RestrictedSettingsStep
 import ai.devdogs.blurp.Screen
 
 internal val Ink = Color(0xFF0B0A10)
@@ -53,7 +54,13 @@ class BlurpActions(
 )
 
 @Composable
-fun BlurpApp(screen: Screen, serviceEnabled: Boolean, frostEnabled: Boolean, restrictedHelp: Boolean, actions: BlurpActions) {
+fun BlurpApp(
+    screen: Screen,
+    serviceEnabled: Boolean,
+    frostEnabled: Boolean,
+    restrictedStep: RestrictedSettingsStep,
+    actions: BlurpActions,
+) {
     MaterialTheme(colorScheme = darkColorScheme(primary = Accent, background = Ink, surface = Ink)) {
         BoxWithConstraints(
             Modifier
@@ -82,7 +89,7 @@ fun BlurpApp(screen: Screen, serviceEnabled: Boolean, frostEnabled: Boolean, res
                     else -> ScreenColumn(wide) {
                         when (target) {
                             Screen.Unsupported -> UnsupportedScreen()
-                            Screen.EnableService -> EnableServiceScreen(actions.onOpenSettings, restrictedHelp, actions.onOpenAppInfo)
+                            Screen.EnableService -> EnableServiceScreen(restrictedStep, actions.onOpenSettings, actions.onOpenAppInfo)
                             Screen.Tutorial -> TutorialScreen(actions.onTutorialDone)
                             Screen.AllSet -> AllSetScreen(actions.onAllSetDone)
                             Screen.Disclosure, Screen.Home -> Unit

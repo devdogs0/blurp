@@ -6,23 +6,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ai.devdogs.blurp.R
+import ai.devdogs.blurp.RestrictedSettingsStep
 
 /**
- * Sends people to Settings to switch Blurp on. Installed from a downloaded file, Blurp is held
- * back there until restricted settings are allowed in its App info, so [restrictedHelp] puts that
- * step first, in the words One UI 9 uses ("App was denied access").
+ * Sends people to Settings to switch Blurp on. Installed from a downloaded file, Blurp is refused
+ * there once ("App was denied access"); only after that does App info's ⋮ menu offer "Allow
+ * restricted settings", so [step] says what to do now: try the switch, or allow it in App info.
  */
 @Composable
-fun EnableServiceScreen(onOpenSettings: () -> Unit, restrictedHelp: Boolean, onOpenAppInfo: () -> Unit) {
+fun EnableServiceScreen(step: RestrictedSettingsStep, onOpenSettings: () -> Unit, onOpenAppInfo: () -> Unit) {
     Title(stringResource(R.string.enable_title))
-    if (!restrictedHelp) {
-        Body(stringResource(R.string.enable_body))
-        PillButton(stringResource(R.string.enable_button), onClick = onOpenSettings)
-        return
-    }
-    Body(stringResource(R.string.enable_restricted_body))
-    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        PillButton(stringResource(R.string.enable_app_info), onClick = onOpenAppInfo)
-        GhostButton(stringResource(R.string.enable_button), onClick = onOpenSettings)
+    when (step) {
+        RestrictedSettingsStep.None -> {
+            Body(stringResource(R.string.enable_body))
+            PillButton(stringResource(R.string.enable_button), onClick = onOpenSettings)
+        }
+        RestrictedSettingsStep.TryFirst -> {
+            Body(stringResource(R.string.enable_try_first))
+            PillButton(stringResource(R.string.enable_button), onClick = onOpenSettings)
+        }
+        RestrictedSettingsStep.AllowNow -> {
+            Body(stringResource(R.string.enable_allow_now))
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                PillButton(stringResource(R.string.enable_app_info), onClick = onOpenAppInfo)
+                GhostButton(stringResource(R.string.enable_button), onClick = onOpenSettings)
+            }
+        }
     }
 }
